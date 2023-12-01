@@ -74,6 +74,7 @@ class MyApp extends StatelessWidget {
                       child: Center(
                         child: Text(
                           'test',
+                          style: TextStyle(color: Colors.black),
                         ),
                       ),
                     );
