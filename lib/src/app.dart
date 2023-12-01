@@ -74,17 +74,31 @@ class MyApp extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(
-                              child: Text('Sing in with google'),
                               onPressed: () {},
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.purple[200],
-                                foregroundColor: Colors.black87,
-                                elevation: 6.0,
-                                shadowColor: Colors.yellow[200],
+                                backgroundColor: Colors.green,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              child: const SizedBox(
+                                width: 200,
+                                height: 200,
                               ),
                             ),
-                            Card(
-                              child: Text('down'),
+                            const SizedBox(width: 10),
+                            ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30.0),
+                                ),
+                              ),
+                              child: const SizedBox(
+                                width: 200,
+                                height: 200,
+                              ),
                             ),
                           ]),
                     );
