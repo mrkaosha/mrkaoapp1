@@ -69,14 +69,24 @@ class MyApp extends StatelessWidget {
               builder: (BuildContext context) {
                 switch (routeSettings.name) {
                   default:
-                    return Card(
-                      color: Colors.white,
-                      child: Center(
-                        child: Text(
-                          'test',
-                          style: TextStyle(color: Colors.black),
-                        ),
-                      ),
+                    return Center(
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              child: Text('Sing in with google'),
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.purple[200],
+                                foregroundColor: Colors.black87,
+                                elevation: 6.0,
+                                shadowColor: Colors.yellow[200],
+                              ),
+                            ),
+                            Card(
+                              child: Text('down'),
+                            ),
+                          ]),
                     );
                 }
               },
