@@ -1,0 +1,6 @@
+{
+  "appTitle": "mrkaoapp1",
+  "@appTitle": {
+    "description": "The title of the application"
+  }
+}
