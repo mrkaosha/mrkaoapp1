@@ -69,14 +69,12 @@ class MyApp extends StatelessWidget {
               builder: (BuildContext context) {
                 switch (routeSettings.name) {
                   default:
-                    return Card(
+                    return const Card(
                       color: Colors.black,
                       child: Center(
-                        child:
-                          Text(
-                            'test',
-                            style: null,
-                          ),
+                        child: Text(
+                          'test',
+                        ),
                       ),
                     );
                 }
