@@ -9,13 +9,23 @@ import 'firebase_options.dart';
 
 import 'package:firebase_database/firebase_database.dart';
 
+import 'dart:math';
+
+const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+Random _rnd = Random();
+
+String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+    length, (_) => _chars.codeUnitAt(_rnd.nextInt(_chars.length))));
+
 void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  String userKey = getRandomString(15);
+  
   // Somewhere in your application, trigger that the user is online:
-  DatabaseReference ref = FirebaseDatabase.instance.ref("users/123/status");
+  DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userKey/status");
   await ref.set(true);
 // And after;
 // Create an OnDisconnect instance for your ref and set to false,
@@ -35,5 +45,5 @@ void main() async {
   // Run the app and pass in the SettingsController. The app listens to the
   // SettingsController for changes, then passes it further down to the
   // SettingsView.
-  runApp(MyApp(settingsController: settingsController));
+  runApp(MyApp(settingsController: settingsController, userKey: userKey));
 }

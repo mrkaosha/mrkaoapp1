@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
 import 'settings/settings_controller.dart';
-import 'settings/settings_view.dart';
 import 'package:firebase_database/firebase_database.dart';
 
 /// The Widget that configures your application.
@@ -13,12 +10,25 @@ class MyApp extends StatelessWidget {
   const MyApp({
     super.key,
     required this.settingsController,
+    required this.userKey,
   });
 
   final SettingsController settingsController;
+  final String userKey;
+
+  void setGreen() async {
+    DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userKey/color");
+    await ref.set(true);
+  }
+
+  void setRed() async {
+    DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userKey/color");
+    await ref.set(false);
+  }
 
   @override
   Widget build(BuildContext context) {
+
     // Glue the SettingsController to the MaterialApp.
     //
     // The ListenableBuilder Widget listens to the SettingsController for changes.
@@ -74,7 +84,7 @@ class MyApp extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: setGreen,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.green,
                                 shape: RoundedRectangleBorder(
@@ -88,7 +98,7 @@ class MyApp extends StatelessWidget {
                             ),
                             const SizedBox(width: 10),
                             ElevatedButton(
-                              onPressed: () {},
+                              onPressed: setRed,
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red,
                                 shape: RoundedRectangleBorder(
