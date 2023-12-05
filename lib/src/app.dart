@@ -19,11 +19,15 @@ class MyApp extends StatelessWidget {
   void setGreen() async {
     DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userKey/color");
     await ref.set(true);
+    DatabaseReference status = FirebaseDatabase.instance.ref("users/$userKey/status");
+    await status.set(true);
   }
 
   void setRed() async {
     DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userKey/color");
     await ref.set(false);
+    DatabaseReference status = FirebaseDatabase.instance.ref("users/$userKey/status");
+    await status.set(true);
   }
 
   @override

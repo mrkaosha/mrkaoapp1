@@ -11,6 +11,8 @@ import 'package:firebase_database/firebase_database.dart';
 
 import 'dart:math';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 const _chars = 'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
 Random _rnd = Random();
 
@@ -21,8 +23,10 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
-  String userKey = getRandomString(15);
+  
+  final prefs = await SharedPreferences.getInstance();
+  String userKey = (prefs.getString('userKey') ?? getRandomString(15));
+  await prefs.setString('userKey', userKey);
   
   // Somewhere in your application, trigger that the user is online:
   DatabaseReference ref = FirebaseDatabase.instance.ref("users/$userKey/status");
